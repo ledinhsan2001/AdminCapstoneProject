@@ -11,3 +11,50 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+#root{
+  background-color: #D9D9D9;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input[type="range"]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  height: 5px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 30px;
+  width: 30px;
+  border: 1px solid #ccc;
+  background-color: white;
+  margin-top: -11px;
+  border-radius: 20px;
+  pointer-events: auto;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb:active {
+
+  border: 2px solid #7284db;
+}
+.slick-dots li button:before{
+  color: white !important;
+}
+.slick-prev {
+  left: 30px !important;
+  z-index: 10 !important;
+}
+.slick-next {
+  z-index: 10 !important;
+  right:30px !important;
+}
+
+button.slick-arrow::before  {
+  font-size: 40px !important;
+  z-index: 10 !important;
+}
+/* leaflet */
+.leaflet-container {
+  height: 450px;
+}
