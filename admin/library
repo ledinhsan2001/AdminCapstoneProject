@@ -1,0 +1,8 @@
+npm i react-router-dom sweetalert2 redux react-redux redux-persist --save -dev
+npm install -D tailwindcss postcss autoprefixer
+npm i react-icons redux-thunk --save -dev
+npm i react-paginate --save -dev
+npm i react-chartjs-2 chartjs --save -dev
+npm i moment --save -dev
+npm install react-loader-spinner --save -dev
+npm i bootstrap --save -dev
