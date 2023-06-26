@@ -1,7 +1,6 @@
 import actionTypes from "../actions/actionTypes";
 
 const initState = {
-    isLoggedIn: false,
     accessToken: null,
     refreshToken: null,
     isLoggedInAdmin: false,

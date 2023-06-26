@@ -16,13 +16,15 @@ const HomeAdmin = () => {
     const { isLoggedInAdmin } = useSelector((state) => state.auth);
 
     useEffect(() => {
-        !isLoggedInAdmin && navigate(`/admin/${path.LOGIN_ADMIN}`);
-        setTimeout(() => {
-            isLoggedInAdmin && dispatch(actionUser());
-        }, 2000);
-        dispatch(getAllRealHome());
-        dispatch(actionGetAllPayHis());
-        dispatch(actionAllUser());
+        !isLoggedInAdmin && navigate(`/${path.LOGIN_ADMIN}`);
+        if (isLoggedInAdmin) {
+            setTimeout(() => {
+                dispatch(actionUser());
+                dispatch(getAllRealHome());
+                dispatch(actionGetAllPayHis());
+                dispatch(actionAllUser());
+            }, 2000);
+        }
     }, [isLoggedInAdmin]);
 
     return (
