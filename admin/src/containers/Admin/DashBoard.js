@@ -234,7 +234,7 @@ const DashBoard = () => {
                                     return (
                                         <div
                                             className="flex w-full h-[60px] rounded-xl px-4 py-2 items-center text-left bg-white gap-2"
-                                            key={user._id}
+                                            key={user._id + 1}
                                         >
                                             <div className="rounded-full bg-gray-300 w-[70px] h-[50px]">
                                                 <img

@@ -21,10 +21,6 @@ const HistoryList = () => {
     const location = useLocation();
 
     useEffect(() => {
-        limit_data_pay_his && setall_pay_his(limit_data_pay_his);
-    }, [limit_data_pay_his]);
-
-    useEffect(() => {
         let page_value = params.get("page");
         let page = page_value ? +page_value - 1 : 0;
 
@@ -35,6 +31,10 @@ const HistoryList = () => {
         );
         setCurrentPage(+page);
     }, [params, dispatch]);
+
+    useEffect(() => {
+        limit_data_pay_his && setall_pay_his(limit_data_pay_his);
+    }, [limit_data_pay_his]);
 
     function handlePageClick(e) {
         let objparams = {};

@@ -3,6 +3,7 @@ import { path } from "../../utils/constant";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAdmin } from "../../store/actions";
+import { mdi_user } from "../../assets/images";
 const SidebarMain = () => {
     const dispatch = useDispatch();
     const { user_data } = useSelector((state) => state.user);
@@ -20,7 +21,18 @@ const SidebarMain = () => {
         >
             <ul className="nav flex-column sticky-top pl-0 pt-5 p-3 mt-3 text-left">
                 <li className="nav-item mb-2 mt-3">
-                    <p className="nav-link font-bold text-[20px] text-blue-500">{`${user_data?.first_name} ${user_data?.last_name}`}</p>
+                    <div className="flex items-center justify-center">
+                        <div className="flex rounded-full bg-[#D9D9D9] items-center justify-center hover:text-gray-600 h-[60px] w-[60px] pt-1 mb-2">
+                            <span className="animate-ping absolute inline-flex h-[8px] w-[8px] rounded-full bg-green-500 opacity-100 ml-[50px] mb-[40px]"></span>
+                            <img
+                                src={user_data?.avt || mdi_user}
+                                alt="mdi_user"
+                                className="h-[65px] w-[70px] rounded-full"
+                            ></img>
+                        </div>
+
+                        <p className="nav-link font-bold text-[20px] text-blue-500">{`${user_data?.first_name} ${user_data?.last_name}`}</p>
+                    </div>
                 </li>
                 <li className="nav-item mb-2 ">
                     <Link to={`/`} className="nav-link text-secondary">
