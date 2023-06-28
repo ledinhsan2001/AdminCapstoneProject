@@ -52,9 +52,9 @@ const HistoryList = () => {
                 <div className="grid-margin stretch-card">
                     <div className="card">
                         <div className="card-body">
-                            <h4 className="card-title text-xl font-bold">
+                            <div className="card-title text-xl font-bold">
                                 Lịch sử thanh toán của người dùng
-                            </h4>
+                            </div>
                             <div className="table-responsive">
                                 <div className="text-start text-lg flex">
                                     Tổng cộng:

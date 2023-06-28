@@ -56,19 +56,32 @@ export const apiPutBlog = (payload, _id) =>
         }
     });
 
-export const apiPutStatusBlog = (_id) =>
+export const apiStatusFalseBlog = (_id) =>
     new Promise(async (resolve, reject) => {
         try {
             const response = await axiosConfig({
-                method: "delete",
-                url: "/api/blog/put-status",
-                params: _id,
+                method: "put",
+                url: `/api/blog/put-status-false/${_id}`,
             });
             resolve(response);
         } catch (error) {
             reject(error);
         }
     });
+
+export const apiStatusTrueBlog = (_id) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const response = await axiosConfig({
+                method: "put",
+                url: `/api/blog/put-status-true/${_id}`,
+            });
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        }
+    });
+
 export const apiDeleteBlog = (_id) =>
     new Promise(async (resolve, reject) => {
         try {

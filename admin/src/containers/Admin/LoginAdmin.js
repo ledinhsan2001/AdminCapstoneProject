@@ -64,9 +64,9 @@ const LoginAdmin = () => {
                             <div className="brand-logo">
                                 <img src={LogoNav} alt="logo"></img>
                             </div>
-                            <h3 className="flex text-xl">
+                            <div className="flex text-xl">
                                 Start<p className="text-blue-500">Admin</p>
-                            </h3>
+                            </div>
                         </div>
                         <div className="flex flex-col gap-2 w-[60%] mt-4">
                             <InputRegister

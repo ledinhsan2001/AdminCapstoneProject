@@ -29,6 +29,7 @@ const HomeAdmin = () => {
                 dispatch(actionGetAlllBlogType());
             }, 2000);
         }
+        // eslint-disable-next-line
     }, [isLoggedInAdmin]);
 
     return (
