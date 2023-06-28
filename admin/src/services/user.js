@@ -84,7 +84,7 @@ export const apiDeleteUser = (payload) =>
     new Promise(async (resolve, reject) => {
         try {
             const response = await axiosConfig({
-                method: "put",
+                method: "delete",
                 url: "/api/user/drop",
                 params: payload,
             });

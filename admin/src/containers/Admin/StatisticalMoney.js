@@ -4,9 +4,7 @@ import { useSelector } from "react-redux";
 import { GiTakeMyMoney } from "react-icons/gi";
 
 const StatisticalMoney = () => {
-    const { data_pay_his, total_payment_his } = useSelector(
-        (state) => state.payment
-    );
+    const { data_pay_his } = useSelector((state) => state.payment);
     const [all_pay_his, setall_pay_his] = useState([]);
 
     useEffect(() => {

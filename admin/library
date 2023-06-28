@@ -7,3 +7,5 @@ npm i moment --save -dev
 npm install react-loader-spinner --save -dev
 npm i bootstrap --save -dev
 npm install -D babel-loader @babel/core @babel/preset-env webpack
+npm add file:./ckeditor5
+npm i @ckeditor/ckeditor5-react

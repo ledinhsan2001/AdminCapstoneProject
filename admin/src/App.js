@@ -1,8 +1,9 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { path } from "./utils/constant";
 import "./App.css";
 import {
     AccountManage,
+    Blog,
     DashBoard,
     HomeAdmin,
     LoginAdmin,
@@ -10,8 +11,24 @@ import {
     StatisticalPost,
 } from "./containers/Admin";
 import HistoryList from "./containers/Admin/HistoryList";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { logoutAdmin } from "./store/actions";
+import BlogDetail from "./containers/Admin/BlogDetail";
 
 function App() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { user_data } = useSelector((state) => state.user);
+
+    useEffect(() => {
+        if (!user_data) {
+            navigate(`/${path.LOGIN_ADMIN}`);
+            dispatch(logoutAdmin());
+        }
+        // eslint-disable-next-line
+    }, []);
+
     return (
         <div className="App overflow-hidden w-screen">
             <div className="auth-wrapper">
@@ -38,6 +55,14 @@ function App() {
                             <Route
                                 path={path.ACCOUNT_MANAGE}
                                 element={<AccountManage />}
+                            />
+                            <Route
+                                path={path.BLOG_MANAGEMENT}
+                                element={<Blog />}
+                            />
+                            <Route
+                                path={path.BLOG_DETAIL__ID}
+                                element={<BlogDetail />}
                             />
                         </Route>
                     </Routes>
