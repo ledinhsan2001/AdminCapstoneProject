@@ -38,23 +38,23 @@ input[type="range"]::-webkit-slider-thumb:active {
 
   border: 2px solid #7284db;
 }
-.slick-dots li button:before{
-  color: white !important;
+
+.ck.ck-editor__main>.ck-editor__editable {
+  padding-left: 30px !important;
 }
-.slick-prev {
-  left: 30px !important;
-  z-index: 10 !important;
-}
-.slick-next {
-  z-index: 10 !important;
-  right:30px !important;
+.page-item.active{
+  z-index: 0 !important;
 }
 
-button.slick-arrow::before  {
-  font-size: 40px !important;
-  z-index: 10 !important;
+h1{
+  font-size: 80px !important;
 }
-/* leaflet */
-.leaflet-container {
-  height: 450px;
+h2{
+  font-size: 70px !important;
+}
+h3{
+  font-size: 60px !important;
+}
+h4{
+  font-size: 50px !important;
 }

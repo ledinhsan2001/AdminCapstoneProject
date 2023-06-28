@@ -39,11 +39,8 @@ const DashBoard = () => {
 
     useEffect(() => {
         !isLoggedInAdmin && navigate(`/${path.LOGIN_ADMIN}`);
+        // eslint-disable-next-line
     }, [isLoggedInAdmin]);
-
-    useEffect(() => {
-        dispatch(actionAllUser());
-    }, [dispatch, isDeleted]);
 
     useEffect(() => {
         setuser(limit_data_user);
@@ -64,7 +61,7 @@ const DashBoard = () => {
             })
         );
         setCurrentPage(+page);
-    }, [params, dispatch]);
+    }, [params, dispatch, isDeleted]);
 
     function handlePageClick(e) {
         let objparams = {};
@@ -194,7 +191,7 @@ const DashBoard = () => {
                                     {Admin &&
                                         Admin.map((user, index) => {
                                             return (
-                                                <tr key={user._id}>
+                                                <tr key={user._id + "admin"}>
                                                     <td>{index}</td>
                                                     <td>{`${user.first_name} ${user.last_name}`}</td>
                                                     <td>{user.email}</td>
@@ -234,7 +231,7 @@ const DashBoard = () => {
                                     return (
                                         <div
                                             className="flex w-full h-[60px] rounded-xl px-4 py-2 items-center text-left bg-white gap-2"
-                                            key={user._id + 1}
+                                            key={user._id + "a"}
                                         >
                                             <div className="rounded-full bg-gray-300 w-[70px] h-[50px]">
                                                 <img
@@ -315,13 +312,8 @@ const DashBoard = () => {
                                                 {user &&
                                                     user.map((user) => {
                                                         return (
-                                                            <tr>
-                                                                <td
-                                                                    className="flex justify-center items-center"
-                                                                    key={
-                                                                        user._id
-                                                                    }
-                                                                >
+                                                            <tr key={user._id}>
+                                                                <td className="flex justify-center items-center">
                                                                     <div className="rounded-full bg-gray-300 w-[50px] h-[50px]">
                                                                         <img
                                                                             src={

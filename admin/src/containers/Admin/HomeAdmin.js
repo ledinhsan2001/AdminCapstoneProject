@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { path } from "../../utils/constant";
 import {
     actionAllUser,
+    actionGetAllBlogLimit,
     actionGetAllPayHis,
     actionUser,
     getAllRealHome,
@@ -23,6 +24,7 @@ const HomeAdmin = () => {
                 dispatch(getAllRealHome());
                 dispatch(actionGetAllPayHis());
                 dispatch(actionAllUser());
+                dispatch(actionGetAllBlogLimit());
             }, 2000);
         }
     }, [isLoggedInAdmin]);

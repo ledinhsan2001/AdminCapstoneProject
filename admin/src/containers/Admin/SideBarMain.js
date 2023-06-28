@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutAdmin } from "../../store/actions";
 import { mdi_user } from "../../assets/images";
+import { MdEditNote } from "react-icons/md";
 const SidebarMain = () => {
     const dispatch = useDispatch();
     const { user_data } = useSelector((state) => state.user);
@@ -53,7 +54,6 @@ const SidebarMain = () => {
                     <Link
                         to={`/${path.STATISTICAL_POST}`}
                         className="nav-link text-secondary"
-                        href="#"
                     >
                         <i className="fas fa-tablet-alt font-weight-bold"></i>
                         <span className="ml-3">Thống kê tin đăng</span>
@@ -63,7 +63,6 @@ const SidebarMain = () => {
                     <Link
                         to={`/${path.HISTORY_LIST}`}
                         className="nav-link text-secondary"
-                        href="#"
                     >
                         <i className="far fa-folder font-weight-bold"></i>{" "}
                         <span className="ml-3">Danh sách lịch sử</span>
@@ -71,9 +70,17 @@ const SidebarMain = () => {
                 </li>
                 <li className="nav-item mb-2">
                     <Link
+                        to={`/${path.BLOG_MANAGEMENT}`}
+                        className="nav-link text-secondary flex items-center"
+                    >
+                        <MdEditNote size={26} />
+                        <span className="ml-3">Quản lý Blog</span>
+                    </Link>
+                </li>
+                <li className="nav-item mb-2">
+                    <Link
                         to={`/${path.ACCOUNT_MANAGE}`}
                         className="nav-link text-secondary"
-                        href="#"
                     >
                         <i className="far fa-chart-bar font-weight-bold"></i>{" "}
                         <span className="ml-3">Quản lý tài khoản</span>

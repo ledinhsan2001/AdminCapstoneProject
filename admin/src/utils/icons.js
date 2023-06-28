@@ -37,6 +37,7 @@ import { CiEdit } from "react-icons/ci";
 import { GiMoneyStack } from "react-icons/gi";
 import { TfiFilter } from "react-icons/tfi";
 import { SiMoneygram } from "react-icons/si";
+import { MdEditNote } from "react-icons/md";
 
 const icons = {
     AiOutlineDown,
@@ -78,6 +79,7 @@ const icons = {
     TfiFilter,
     GrMoney,
     SiMoneygram,
+    MdEditNote,
 };
 
 export default icons;

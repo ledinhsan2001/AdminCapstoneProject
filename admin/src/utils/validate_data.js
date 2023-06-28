@@ -21,7 +21,9 @@ export const validate_data = (finalPayload, seterrors) => {
             item[0] === "last_name" ||
             item[0] === "phone_admin" ||
             item[0] === "email_admin" ||
-            item[0] === "address_admin"
+            item[0] === "address_admin" ||
+            item[0] === "content" ||
+            item[0] === "title"
         ) {
             if (!item[1]) {
                 seterrors((prev) => [
@@ -29,6 +31,19 @@ export const validate_data = (finalPayload, seterrors) => {
                     {
                         name: item[0],
                         message: "Vui lòng nhập thông tin!",
+                    },
+                ]);
+                count++;
+                return;
+            }
+        }
+        if (item[0] === "thumbnail") {
+            if (!item[1]) {
+                seterrors((prev) => [
+                    ...prev,
+                    {
+                        name: item[0],
+                        message: "Yêu cầu có ảnh.",
                     },
                 ]);
                 count++;

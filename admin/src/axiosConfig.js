@@ -12,7 +12,6 @@ instance.interceptors.request.use(
             JSON.parse(window.localStorage.getItem("persist:auth"));
         const obj_access_token = parse_obj.accessToken;
         const accessToken = JSON.parse(obj_access_token);
-        console.log(accessToken);
         config.headers.authorization = accessToken
             ? `Bearer ${accessToken}`
             : null;

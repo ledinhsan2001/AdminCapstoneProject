@@ -136,13 +136,13 @@ export const apiGetTransactionType = () =>
     });
 
 // ----------------------------------
-export const apiUploadImages = (images) =>
+export const apiUploadImages = (image) =>
     new Promise(async (resolve, reject) => {
         try {
             const response = await axiosDefault({
                 method: "post",
                 url: `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/image/upload`,
-                data: images,
+                data: image,
             });
             resolve(response);
         } catch (error) {

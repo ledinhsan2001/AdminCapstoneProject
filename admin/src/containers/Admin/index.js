@@ -9,3 +9,5 @@ export { default as StatisticalPost } from "./StatisticalPost";
 export { default as BarChart } from "./BarChart";
 export { default as StatisticalMoney } from "./StatisticalMoney";
 export { default as AddAdmin } from "./AddAdmin";
+export { default as Blog } from "./Blog";
+export { default as AddBlog } from "./AddBlog";
