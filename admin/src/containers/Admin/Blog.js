@@ -17,6 +17,7 @@ import Swal from "sweetalert2";
 import { apiDeleteBlog } from "../../services";
 import { dataBlogEdit } from "../../store/actions/actionBlog";
 import { formatUniToString } from "../../utils/constant";
+import { TfiFilter } from "react-icons/tfi";
 
 const Blog = () => {
     const [isShowBlog, setisShowBlog] = useState(false);
@@ -27,8 +28,13 @@ const Blog = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [currentPage, setCurrentPage] = useState(0);
-    const { data_blog_limit, total_blog, page_count_blog, message } =
-        useSelector((state) => state.blog);
+    const {
+        data_blog_limit,
+        total_blog,
+        page_count_blog,
+        message,
+        blog_types,
+    } = useSelector((state) => state.blog);
 
     const handleAddBlog = (e) => {
         e.stopPropagation();
@@ -37,28 +43,55 @@ const Blog = () => {
 
     useEffect(() => {
         data_blog_limit?.length > 0 && setdata_blogs(data_blog_limit);
+        message && setdata_blogs([]);
     }, [data_blog_limit]);
 
     useEffect(() => {
+        let objparams = {};
+
         let page_value = params.get("page");
         let page = page_value ? +page_value - 1 : 0;
 
-        dispatch(
-            actionGetAllBlogLimit({
-                page,
-            })
-        );
+        objparams["page"] = page;
+
+        let blog_type_value = params.get("blog_type_id");
+        if (blog_type_value) {
+            objparams["blog_type_id"] = blog_type_value;
+        }
+
+        dispatch(actionGetAllBlogLimit(objparams));
         setCurrentPage(+page);
     }, [params, dispatch, isDeleted]);
 
     function handlePageClick(e) {
         let objparams = {};
         objparams["page"] = e.selected + 1;
+
+        let blog_type_value = params.get("blog_type_id");
+        if (blog_type_value) {
+            objparams["blog_type_id"] = blog_type_value;
+        }
+
         navigate({
             pathname: location.pathname,
             search: createSearchParams(objparams).toString(),
         });
     }
+
+    const handleFilter = (value) => {
+        let objparams = {};
+        if (value) {
+            objparams["blog_type_id"] = value;
+            navigate({
+                pathname: location.pathname,
+                search: createSearchParams(objparams).toString(),
+            });
+        } else {
+            navigate({
+                pathname: "/quan-ly-blog",
+            });
+        }
+    };
 
     const handleDelete = (_id) => {
         Swal.fire({
@@ -94,13 +127,49 @@ const Blog = () => {
                             <h4 className="card-title text-xl font-bold mt-10">
                                 Danh sách Blog
                             </h4>
-                            <div className="table-responsive">
+                            <div className="table-responsive mt-5">
                                 <div className="flex justify-between">
                                     <div className="text-start text-lg flex justify-center items-center">
                                         Tổng số blog:
                                         <p className="font-bold ml-1">
                                             {total_blog}
                                         </p>
+                                    </div>
+                                    <div className=" flex items-center text-left gap-1">
+                                        <TfiFilter size={16} />
+                                        <p className="mr-4 text-[18px] font-bold">
+                                            Lọc tiêu chí:{" "}
+                                        </p>
+                                        <select
+                                            className=" h-[40px] w-[150px] px-2 rounded-xl border-solid border-1 bg-blue-100 border-blue-500 hover:bg-white hover:text-black hover:border-solid hover:border-2 hover:border-blue-300 cursor-pointer"
+                                            onChange={(e) =>
+                                                handleFilter(e.target.value)
+                                            }
+                                        >
+                                            <option
+                                                className="text-gray-500 font-bold"
+                                                value={""}
+                                            >
+                                                Tất cả
+                                            </option>
+                                            {blog_types?.length > 0 &&
+                                                blog_types.map((item) => {
+                                                    return (
+                                                        <option
+                                                            className="text-gray-500 font-bold"
+                                                            value={item._id}
+                                                            key={item._id}
+                                                            onClick={() =>
+                                                                handleFilter(
+                                                                    item._id
+                                                                )
+                                                            }
+                                                        >
+                                                            {item.name}
+                                                        </option>
+                                                    );
+                                                })}
+                                        </select>
                                     </div>
                                     <div>
                                         <p
@@ -113,6 +182,7 @@ const Blog = () => {
                                         </p>
                                     </div>
                                 </div>
+
                                 {message && (
                                     <div className="bg-white">{message}</div>
                                 )}

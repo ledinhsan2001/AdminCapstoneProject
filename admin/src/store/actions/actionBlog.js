@@ -67,3 +67,26 @@ export const delDataBlogEdit = () => async (dispatch) => {
         data_edit: null,
     });
 };
+
+export const actionGetAlllBlogType = () => async (dispatch) => {
+    try {
+        const response = await services.apiGetAlllBlogType();
+        if (response?.data.success === true) {
+            dispatch({
+                type: actionTypes.GET_ALL_BLOG_TYPE,
+                blog_types: response.data.data,
+            });
+        } else {
+            dispatch({
+                type: actionTypes.GET_ALL_BLOG_TYPE,
+                message: response.data.message,
+                blog_types: null,
+            });
+        }
+    } catch (error) {
+        dispatch({
+            type: actionTypes.GET_ALL_BLOG_TYPE,
+            blog_types: null,
+        });
+    }
+};

@@ -33,7 +33,12 @@ const blogReducer = (state = initState, action) => {
                 ...state,
                 data_edit: action.data_edit || [],
             };
-
+        case actionTypes.GET_ALL_BLOG_TYPE:
+            return {
+                ...state,
+                blog_types: action.blog_types || [],
+                message: action.message || "",
+            };
         default:
             return state;
     }

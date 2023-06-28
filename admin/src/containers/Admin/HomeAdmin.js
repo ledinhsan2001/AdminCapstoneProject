@@ -7,6 +7,7 @@ import {
     actionAllUser,
     actionGetAllBlogLimit,
     actionGetAllPayHis,
+    actionGetAlllBlogType,
     actionUser,
     getAllRealHome,
 } from "../../store/actions";
@@ -25,6 +26,7 @@ const HomeAdmin = () => {
                 dispatch(actionGetAllPayHis());
                 dispatch(actionAllUser());
                 dispatch(actionGetAllBlogLimit());
+                dispatch(actionGetAlllBlogType());
             }, 2000);
         }
     }, [isLoggedInAdmin]);
