@@ -42,6 +42,33 @@ export const apiGetDetailBlog = (_id) =>
         }
     });
 
+export const apiPutBlog = (payload, _id) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const response = await axiosConfig({
+                method: "put",
+                url: `/api/blog/put/${_id}`,
+                data: payload,
+            });
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        }
+    });
+
+export const apiPutStatusBlog = (_id) =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const response = await axiosConfig({
+                method: "delete",
+                url: "/api/blog/put-status",
+                params: _id,
+            });
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        }
+    });
 export const apiDeleteBlog = (_id) =>
     new Promise(async (resolve, reject) => {
         try {
@@ -49,6 +76,19 @@ export const apiDeleteBlog = (_id) =>
                 method: "delete",
                 url: "/api/blog/drop",
                 params: _id,
+            });
+            resolve(response);
+        } catch (error) {
+            reject(error);
+        }
+    });
+
+export const apiGetAlllBlogType = () =>
+    new Promise(async (resolve, reject) => {
+        try {
+            const response = await axiosConfig({
+                method: "get",
+                url: "/api/blog-type/all",
             });
             resolve(response);
         } catch (error) {

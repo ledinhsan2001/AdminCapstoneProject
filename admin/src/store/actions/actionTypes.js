@@ -38,6 +38,9 @@ const actionTypes = {
     BLOG_EDIT: "BLOG_EDIT",
     DEL_BLOG_EDIT: "DEL_BLOG_EDIT",
     GET_DETAIL_BLOG: "GET_DETAIL_BLOG",
+
+    // BLOG TYPE
+    GET_ALL_BLOG_TYPE: "GET_ALL_BLOG_TYPE",
 };
 
 export default actionTypes;
