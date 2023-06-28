@@ -1,4 +1,6 @@
 import { AiOutlineDown } from "react-icons/ai";
+import { AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { BsTrash } from "react-icons/bs";
 import { TbReportMoney } from "react-icons/tb";
@@ -38,7 +40,6 @@ import { GiMoneyStack } from "react-icons/gi";
 import { TfiFilter } from "react-icons/tfi";
 import { SiMoneygram } from "react-icons/si";
 import { MdEditNote } from "react-icons/md";
-import { TfiFilter } from "react-icons/tfi";
 
 const icons = {
     AiOutlineDown,
@@ -81,7 +82,8 @@ const icons = {
     GrMoney,
     SiMoneygram,
     MdEditNote,
-    TfiFilter,
+    AiOutlineEye,
+    AiOutlineEyeInvisible,
 };
 
 export default icons;

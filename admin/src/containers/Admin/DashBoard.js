@@ -3,7 +3,7 @@ import { GiTakeMyMoney } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import moment from "moment";
 import "moment/locale/vi";
-import { actionAllUser, actionAllUserLimit } from "../../store/actions";
+import { actionAllUserLimit } from "../../store/actions";
 import { apiDeleteUser } from "../../services";
 import { mdi_user } from "../../assets/images";
 import {
@@ -112,8 +112,10 @@ const DashBoard = () => {
                                 <div className="rotate">
                                     <i className="fa fa-user fa-4x"></i>
                                 </div>
-                                <h6 className="text-uppercase">Người dùng</h6>
-                                <h1 className="display-4">{total_all_user}</h1>
+                                <div className="text-uppercase">Người dùng</div>
+                                <div className="display-4">
+                                    {total_all_user}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -123,8 +125,10 @@ const DashBoard = () => {
                                 <div className="rotate">
                                     <i className="fa fa-list fa-4x"></i>
                                 </div>
-                                <h6 className="text-uppercase">Bài đăng</h6>
-                                <h1 className="display-4">{total_all_data}</h1>
+                                <div className="text-uppercase">Bài đăng</div>
+                                <div className="display-4">
+                                    {total_all_data}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -139,15 +143,15 @@ const DashBoard = () => {
                                         />
                                     </i>
                                 </div>
-                                <h6 className="text-uppercase">Thu nhập</h6>
-                                <h1 className="display-4">{`${data_pay_his?.reduce(
+                                <div className="text-uppercase">Thu nhập</div>
+                                <div className="display-4">{`${data_pay_his?.reduce(
                                     (initial, value) => {
                                         return (
                                             initial + value.payment.total_price
                                         );
                                     },
                                     0
-                                )}.000 VND`}</h1>
+                                )}.000 VND`}</div>
                             </div>
                         </div>
                     </div>
@@ -156,9 +160,9 @@ const DashBoard = () => {
                 <div className="row ">
                     <div className="col-lg-8 col-md-6 col-sm-12">
                         <div className="flex items-center justify-between">
-                            <h5 className="mt-3 mb-3 text-secondary font-bold">
+                            <div className="mt-3 mb-3 text-secondary font-bold">
                                 Danh sách tài khoản admin
-                            </h5>
+                            </div>
                             <p
                                 className="p-2 m-2 bg-blue-400 text-white rounded-lg hover:cursor-pointer hover:bg-blue-300"
                                 onClick={(e) => {
@@ -221,9 +225,9 @@ const DashBoard = () => {
                         </div>
                     </div>
                     <div className="col-lg-4 col-md-6 col-sm-12 col-sm-offset-5">
-                        <h4 className="title mt-3 mb-3 text-center text-secondary font-bold">
+                        <div className="title mt-3 mb-3 text-center text-secondary font-bold">
                             Tài khoản người dùng vừa tạo
-                        </h4>
+                        </div>
                         <hr></hr>
                         <div className="flex flex-col my-2">
                             {user_slice &&

@@ -103,12 +103,12 @@ const StatisticalPost = () => {
                                 <div className="rotate">
                                     <i className="fa fa-user fa-4x"></i>
                                 </div>
-                                <h6 className="text-uppercase">
+                                <div className="text-uppercase">
                                     Tin đang hoạt động
-                                </h6>
-                                <h1 className="display-4">
+                                </div>
+                                <div className="display-4">
                                     {data_active?.length}
-                                </h1>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -118,12 +118,12 @@ const StatisticalPost = () => {
                                 <div className="rotate">
                                     <i className="fa fa-list fa-4x"></i>
                                 </div>
-                                <h6 className="text-uppercase">
+                                <div className="text-uppercase">
                                     Tin hết hạn hoặc chưa thanh toán
-                                </h6>
-                                <h1 className="display-4">
+                                </div>
+                                <div className="display-4">
                                     {data_noactive?.length}
-                                </h1>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -131,9 +131,9 @@ const StatisticalPost = () => {
 
                 <div className="flex justify-between mx-[100px]">
                     <div className="flex flex-col items-center justify-center">
-                        <h4 className="title my-3 text-secondary text-3xl font-bold">
+                        <div className="title my-3 text-secondary text-3xl font-bold">
                             Biểu đồ thống kê loại tin
-                        </h4>
+                        </div>
                         <div className="mb-5 h-[400px] w-[400px]">
                             <PieChart
                                 data={{
@@ -162,9 +162,9 @@ const StatisticalPost = () => {
                         </div>
                     </div>
                     <div className="flex flex-col items-center justify-center">
-                        <h4 className="title my-3 text-secondary text-3xl font-bold">
+                        <div className="title my-3 text-secondary text-3xl font-bold">
                             Biểu đồ thống kê tin được đăng theo số ngày
-                        </h4>
+                        </div>
                         <div className="mb-5 h-[400px] w-[400px]">
                             <BarChart
                                 data={{
@@ -212,9 +212,9 @@ const StatisticalPost = () => {
                 </div>
                 <div className="flex mx-[100px] my-[50px] items-center justify-center">
                     <div className="flex flex-col ">
-                        <h4 className="title my-3 text-secondary text-3xl font-bold">
+                        <div className="title my-3 text-secondary text-3xl font-bold">
                             Biểu đồ thống kê loại giao dịch
-                        </h4>
+                        </div>
                         <div className="mb-5 h-[400px] w-[400px]">
                             <ChartDoughnut
                                 data={{
@@ -246,9 +246,9 @@ export default StatisticalPost;
 
 // <div className="flex justify-between mx-[100px] my-[50px]">
 //                     <div className="flex flex-col items-center justify-center">
-//                         <h4 className="title my-3 text-secondary text-3xl font-bold">
+//                         <div className="title my-3 text-secondary text-3xl font-bold">
 //                             Biểu đồ thống kê loại bất động sản mua bán
-//                         </h4>
+//                         </div>
 //                         <div className="mb-5 h-[400px] w-[400px]">
 //                             <ChartDoughnut
 //                                 data={{
@@ -299,9 +299,9 @@ export default StatisticalPost;
 //                         </div>
 //                     </div>
 //                     <div className="flex flex-col items-center justify-center">
-//                         <h4 className="title my-3 text-secondary text-3xl font-bold">
+//                         <div className="title my-3 text-secondary text-3xl font-bold">
 //                             Biểu đồ thống kê loại bất động sản cho thuê
-//                         </h4>
+//                         </div>
 //                         <div className="mb-5 h-[400px] w-[400px]">
 //                             <ChartDoughnut
 //                                 data={{

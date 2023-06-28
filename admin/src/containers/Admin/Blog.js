@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { AddBlog, SideBarMain } from ".";
-import { MdDeleteOutline } from "react-icons/md";
-import { CiEdit } from "react-icons/ci";
 import { useDispatch, useSelector } from "react-redux";
 import {
     Link,
@@ -14,13 +12,26 @@ import { useEffect } from "react";
 import { actionGetAllBlogLimit } from "../../store/actions";
 import ReactPaginate from "react-paginate";
 import Swal from "sweetalert2";
-import { apiDeleteBlog } from "../../services";
+import {
+    apiDeleteBlog,
+    apiStatusFalseBlog,
+    apiStatusTrueBlog,
+} from "../../services";
 import { dataBlogEdit } from "../../store/actions/actionBlog";
 import { formatUniToString } from "../../utils/constant";
-import { TfiFilter } from "react-icons/tfi";
+import icons from "../../utils/icons";
+
+const {
+    MdDeleteOutline,
+    CiEdit,
+    AiOutlineEye,
+    TfiFilter,
+    AiOutlineEyeInvisible,
+} = icons;
 
 const Blog = () => {
     const [isShowBlog, setisShowBlog] = useState(false);
+    const [status, setstatus] = useState(false);
     const [isDeleted, setisDeleted] = useState(false);
     const [data_blogs, setdata_blogs] = useState([]);
     const [params] = useSearchParams();
@@ -44,6 +55,7 @@ const Blog = () => {
     useEffect(() => {
         data_blog_limit?.length > 0 && setdata_blogs(data_blog_limit);
         message && setdata_blogs([]);
+        // eslint-disable-next-line
     }, [data_blog_limit]);
 
     useEffect(() => {
@@ -61,7 +73,7 @@ const Blog = () => {
 
         dispatch(actionGetAllBlogLimit(objparams));
         setCurrentPage(+page);
-    }, [params, dispatch, isDeleted]);
+    }, [params, dispatch, isDeleted, status]);
 
     function handlePageClick(e) {
         let objparams = {};
@@ -117,6 +129,40 @@ const Blog = () => {
         });
     };
 
+    const alert = (type, message) => {
+        return Swal.fire({
+            position: "top-end",
+            icon: type,
+            title: message,
+            showConfirmButton: false,
+            timer: 500,
+        });
+    };
+    const handleStatusTrue = async (_id) => {
+        let response = await apiStatusTrueBlog(_id);
+        if (response.data.success === true) {
+            alert("success", response.data.message);
+            setstatus(!status);
+        } else {
+            alert("error", response.data.message);
+        }
+    };
+
+    const handleStatusFalse = async (_id) => {
+        let response = await apiStatusFalseBlog(_id);
+        if (response.data.success === true) {
+            alert("success", response.data.message);
+            setstatus(!status);
+        } else {
+            alert("error", response.data.message);
+        }
+    };
+
+    const getNameBlogType = (_id) => {
+        const blog = blog_types?.find((item) => item._id === _id);
+        return blog?.name;
+    };
+
     return (
         <div>
             <SideBarMain />
@@ -124,9 +170,9 @@ const Blog = () => {
                 <div className="grid-margin stretch-card">
                     <div className="card">
                         <div className="card-body">
-                            <h4 className="card-title text-xl font-bold mt-10">
+                            <div className="card-title text-xl font-bold mt-10">
                                 Danh sách Blog
-                            </h4>
+                            </div>
                             <div className="table-responsive mt-5">
                                 <div className="flex justify-between">
                                     <div className="text-start text-lg flex justify-center items-center">
@@ -189,16 +235,22 @@ const Blog = () => {
                                 <table className="table table-striped text-left">
                                     <thead>
                                         <tr>
-                                            <th className="w-[2%]">Id</th>
-                                            <th className="w-[10%]">Ảnh</th>
-                                            <th className="w-[13%]">Tiêu đề</th>
+                                            <th className="w-[8%]">
+                                                Trạng thái
+                                            </th>
+                                            <th className="w-[20%]">Ảnh</th>
+                                            <th className="w-[20%]">Tiêu đề</th>
                                             <th className="w-[10%]">
+                                                Loại blog
+                                            </th>
+                                            <th className="w-[15%]">
                                                 Ngày tạo
                                             </th>
-                                            <th className="w-[10%]">
+                                            <th className="w-[15%]">
                                                 Ngày chỉnh sửa
                                             </th>
-                                            <th className="w-[8%]">
+
+                                            <th className="w-[10%]">
                                                 Người đăng
                                             </th>
                                             <th className="w-[5%]"></th>
@@ -212,8 +264,45 @@ const Blog = () => {
                                                         key={item._id}
                                                         className=""
                                                     >
-                                                        <td className="">
-                                                            {item._id}
+                                                        <td>
+                                                            <div className="flex justify-center gap-1">
+                                                                {item?.status ===
+                                                                false ? (
+                                                                    <button
+                                                                        className="cursor-pointer py-2 px-1 rounded-md bg-green-500 hover:bg-green-400 text-white flex items-center overflow-hidden"
+                                                                        onClick={() =>
+                                                                            handleStatusTrue(
+                                                                                item?._id
+                                                                            )
+                                                                        }
+                                                                    >
+                                                                        <AiOutlineEye
+                                                                            color="white"
+                                                                            size={
+                                                                                24
+                                                                            }
+                                                                        />
+                                                                        Hiện
+                                                                    </button>
+                                                                ) : (
+                                                                    <button
+                                                                        className="cursor-pointer py-2 px-1 rounded-md bg-gray-600 hover:bg-green-500  text-white flex items-center overflow-hidden"
+                                                                        onClick={() =>
+                                                                            handleStatusFalse(
+                                                                                item?._id
+                                                                            )
+                                                                        }
+                                                                    >
+                                                                        <AiOutlineEyeInvisible
+                                                                            color="white"
+                                                                            size={
+                                                                                24
+                                                                            }
+                                                                        />
+                                                                        Ẩn
+                                                                    </button>
+                                                                )}
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <img
@@ -236,6 +325,11 @@ const Blog = () => {
                                                             </Link>
                                                         </td>
                                                         <td>
+                                                            {getNameBlogType(
+                                                                item.blog_type_id
+                                                            )}
+                                                        </td>
+                                                        <td>
                                                             {item.createdAt}
                                                         </td>
                                                         <td>
@@ -247,7 +341,7 @@ const Blog = () => {
                                                         <td className="font-bold justify-center">
                                                             <div className="flex justify-center gap-1">
                                                                 <button
-                                                                    className="cursor-pointer py-2 px-1 rounded-md bg-green-500 text-white flex items-center overflow-hidden"
+                                                                    className="cursor-pointer py-2 px-1 rounded-md bg-green-500 hover:bg-green-400 text-white flex items-center overflow-hidden"
                                                                     onClick={() => {
                                                                         dispatch(
                                                                             dataBlogEdit(
@@ -268,7 +362,7 @@ const Blog = () => {
                                                                     Sửa
                                                                 </button>
                                                                 <button
-                                                                    className="cursor-pointer py-2 px-2 rounded-md bg-red-400 text-white flex items-center overflow-hidden"
+                                                                    className="cursor-pointer py-2 px-2 rounded-md bg-red-400 hover:bg-red-300  text-white flex items-center overflow-hidden"
                                                                     onClick={() =>
                                                                         handleDelete(
                                                                             item._id
