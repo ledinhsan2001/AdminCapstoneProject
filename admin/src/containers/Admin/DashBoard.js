@@ -101,6 +101,14 @@ const DashBoard = () => {
         });
     };
 
+    const formatMoney = (x) => {
+        x *= 1000;
+        return x.toLocaleString("it-IT", {
+            style: "currency",
+            currency: "VND",
+        });
+    };
+
     return (
         <div className="flex">
             <SideBarMain />
@@ -144,14 +152,13 @@ const DashBoard = () => {
                                     </i>
                                 </div>
                                 <div className="text-uppercase">Thu nhập</div>
-                                <div className="display-4">{`${data_pay_his?.reduce(
-                                    (initial, value) => {
+                                <div className="display-4">{`${formatMoney(
+                                    data_pay_his?.reduce((initial, value) => {
                                         return (
                                             initial + value.payment.total_price
                                         );
-                                    },
-                                    0
-                                )}.000 VND`}</div>
+                                    }, 0)
+                                )}`}</div>
                             </div>
                         </div>
                     </div>

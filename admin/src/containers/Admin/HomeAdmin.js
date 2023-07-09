@@ -25,7 +25,7 @@ const HomeAdmin = () => {
                 dispatch(getAllRealHome());
                 dispatch(actionGetAllPayHis());
                 dispatch(actionAllUser());
-                dispatch(actionGetAllBlogLimit());
+                dispatch(actionGetAllBlogLimit({ page: 0 }));
                 dispatch(actionGetAlllBlogType());
             }, 2000);
         }

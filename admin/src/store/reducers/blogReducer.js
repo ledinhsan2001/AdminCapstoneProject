@@ -26,12 +26,12 @@ const blogReducer = (state = initState, action) => {
         case actionTypes.BLOG_EDIT:
             return {
                 ...state,
-                data_edit: action.data_edit || [],
+                data_edit: action.data_edit || null,
             };
         case actionTypes.DEL_BLOG_EDIT:
             return {
                 ...state,
-                data_edit: action.data_edit || [],
+                data_edit: action.data_edit || null,
             };
         case actionTypes.GET_ALL_BLOG_TYPE:
             return {
