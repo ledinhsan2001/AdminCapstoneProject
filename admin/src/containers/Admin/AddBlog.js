@@ -53,7 +53,7 @@ const AddBlog = ({ setisShowBlog }) => {
                 const response = await apiAddBlog(payload);
                 if (response.data.success === true) {
                     Swal.fire("Thành công!", response.data.message, "success");
-                    dispatch(actionGetAllBlogLimit(0));
+                    dispatch(actionGetAllBlogLimit({ page: 0 }));
                 } else {
                     Swal.fire("Lỗi!", response.data.message, "error");
                 }
@@ -141,7 +141,7 @@ const AddBlog = ({ setisShowBlog }) => {
                     <div className="flex justify-center w-full">
                         <div className="pt-4 w-[60%]">
                             <div className="text-left text-white font-bold text-4xl pb-4">
-                                Tạo blog
+                                {data_edit ? "Cập nhật blog" : "Tạo blog"}
                             </div>
                             <div
                                 className="flex flex-col h-auto px-[10%] bg-white pb-4"
@@ -217,11 +217,7 @@ const AddBlog = ({ setisShowBlog }) => {
                                         <div className="flex flex-col">
                                             <select
                                                 className="ml-[140px] h-[40px] w-[150px] px-2 rounded-xl border-solid border-1 bg-blue-100 border-blue-500 hover:bg-white hover:text-black hover:border-solid hover:border-2 hover:border-blue-300 cursor-pointer"
-                                                value={
-                                                    data_edit
-                                                        ? payload.blog_type_id
-                                                        : ""
-                                                }
+                                                value={payload?.blog_type_id}
                                                 onChange={(e) =>
                                                     setpayload((prev) => ({
                                                         ...prev,

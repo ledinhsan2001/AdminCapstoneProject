@@ -11,6 +11,14 @@ const StatisticalMoney = () => {
         data_pay_his && setall_pay_his(data_pay_his);
     }, [data_pay_his]);
 
+    const formatMoney = (x) => {
+        x *= 1000;
+        return x.toLocaleString("it-IT", {
+            style: "currency",
+            currency: "VND",
+        });
+    };
+
     const statistical = (number_day) => {
         let total_statistical;
         let data_filter = [];
@@ -53,12 +61,11 @@ const StatisticalMoney = () => {
                                 </i>
                             </div>
                             <div className="text-uppercase">Tổng thu nhập</div>
-                            <div className="display-4">{`${data_pay_his?.reduce(
-                                (initial, value) => {
+                            <div className="display-4">{`${formatMoney(
+                                data_pay_his?.reduce((initial, value) => {
                                     return initial + value.payment.total_price;
-                                },
-                                0
-                            )}.000 VND`}</div>
+                                }, 0)
+                            )}`}</div>
                         </div>
                     </div>
                 </div>
@@ -69,9 +76,9 @@ const StatisticalMoney = () => {
                                 <div className="text-uppercase text-[50px]">
                                     5 ngày
                                 </div>
-                                <p className="display-4 text-[30px]">{`${statistical(
-                                    5
-                                )}.000 VND`}</p>
+                                <p className="display-4 text-[30px]">{`${formatMoney(
+                                    statistical(5)
+                                )}`}</p>
                             </div>
                         </div>
                     </div>
@@ -82,7 +89,7 @@ const StatisticalMoney = () => {
                                     10 ngày
                                 </div>
                                 <p className="display-4 text-[30px]">
-                                    {`${statistical(10)}.000 VND`}
+                                    {`${formatMoney(statistical(10))}`}
                                 </p>
                             </div>
                         </div>
@@ -94,7 +101,7 @@ const StatisticalMoney = () => {
                                     15 ngày
                                 </div>
                                 <p className="display-4 text-[30px]">
-                                    {`${statistical(15)}.000 VND`}
+                                    {`${formatMoney(statistical(15))}`}
                                 </p>
                             </div>
                         </div>
@@ -106,7 +113,7 @@ const StatisticalMoney = () => {
                                     30 ngày
                                 </div>
                                 <p className="display-4 text-[30px]">
-                                    {`${statistical(30)}.000 VND`}
+                                    {`${formatMoney(statistical(30))}`}
                                 </p>
                             </div>
                         </div>

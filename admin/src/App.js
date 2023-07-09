@@ -27,7 +27,7 @@ function App() {
             dispatch(logoutAdmin());
         }
         // eslint-disable-next-line
-    }, []);
+    }, [user_data]);
 
     return (
         <div className="App overflow-hidden w-screen">
